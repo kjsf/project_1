@@ -1,2 +1,2 @@
-# project_1
-Bucket List App
+# Bucket List App
+
