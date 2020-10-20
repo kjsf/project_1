@@ -18,23 +18,25 @@ app.use(helmet());
 const userRoute = require("./routes/userRoute");
 const listRoute = require("./routes/listRoute");
 
-// connect to Atlas
-mongoose.connect(
-  db,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  () => {
-    console.log(`Successfully connected to the DB`);
-  }
-);
-
 // routes
 app.use("/user", userRoute);
 app.use("/bucketlist", listRoute);
 
-app.listen(PORT, () => {
-  console.log(`Server Listening at port ${PORT}`);
-});
-
 // error handling
 app.use(errors.handle404);
 app.use(errors.errorHandler);
+
+// connect to atlas and run server
+(async () => {
+  try {
+    await mongoose.connect(db, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log(`Successfully connected to the DB`);
+    app.listen(PORT);
+    console.log(`Server Listening at port ${PORT}`);
+  } catch (e) {
+    console.log(e);
+  }
+})();
