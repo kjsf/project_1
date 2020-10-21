@@ -1,5 +1,5 @@
 const express = require("express");
-const List = require("../models/lists");
+const Lists = require("../models/lists");
 
 const listRoute = express.Router();
 
@@ -28,7 +28,7 @@ listRoute
   });
 
 listRoute
-  .route("/:listid")
+  .route("/:userid")
   .get((req, res) => {
     res.status(200).end(`LIST ROUTE`);
   })

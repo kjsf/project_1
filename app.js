@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const errors = require("./errors");
 const helmet = require("helmet");
+const passport = require("passport");
 require("dotenv").config();
 
 const app = express();
@@ -11,8 +12,9 @@ const db = process.env.MONGO_URI;
 
 // middlewares
 app.use(morgan("common"));
-app.use(express.json());
 app.use(helmet());
+app.use(express.json());
+app.use(passport.initialize());
 
 // import routes
 const userRoute = require("./routes/userRoute");
@@ -32,8 +34,9 @@ app.use(errors.errorHandler);
     await mongoose.connect(db, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useCreateIndex: true,
     });
-    console.log(`Successfully connected to the DB`);
+    console.log(`Successfully connected to Atlas`);
     app.listen(PORT);
     console.log(`Server Listening at port ${PORT}`);
   } catch (e) {
