@@ -1,0 +1,66 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  margin: auto;
+  background-color: white;
+  font-family: Roboto;
+}
+
+/* MAIN */
+main {
+  width: 80%;
+  height: 92vh;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* FOOTER */
+
+footer {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 8vh;
+  background-color: #f2f2f2;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+  font-size: 0.8rem;
+  color: black;
+}
+
+.svg-github {
+  width: 2rem;
+  height: auto;
+  fill: black;
+  transition: 0.2s;
+  margin: 0 0.9rem;
+}
+
+.footer-links :hover {
+  fill: #fbc22d;
+}
