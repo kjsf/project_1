@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%-include('./partials/head.ejs')%>
+  </head>
+  <body>
+    <div class="signout">
+      <a href="/">Sign Out</a>
+    </div>
+    <main>
+      <div class="bucketList">
+        <ul>
+          <%let bList = list%> <% bList.forEach(item =>{ %>
+          <li>
+            <%=item%>
+            <svg
+              class="svg-delete"
+              width="42"
+              height="42"
+              viewBox="0 0 42 42"
+              fill="none"
+            >
+              <path
+                d="M7.92349 40.6407L21 27.5639L34.0765 40.6407C35.8892 42.4531 38.828 42.4531 40.6407 40.6407C42.4531 38.828 42.4531 35.8892 40.6407 34.0765L27.5639 21L40.6407 7.92351C42.4531 6.11078 42.4531 3.17203 40.6407 1.3593C38.828 -0.453102 35.8892 -0.453102 34.0765 1.3593L21 14.4361L7.92349 1.3593C6.11077 -0.453102 3.17202 -0.453102 1.35929 1.3593C-0.453117 3.17203 -0.453117 6.11078 1.35929 7.92351L14.4361 21L1.35929 34.0765C-0.453117 35.8892 -0.453117 38.828 1.35929 40.6407C3.17202 42.4531 6.11077 42.4531 7.92349 40.6407Z"
+              />
+            </svg>
+          </li>
+          <%} ) %>
+        </ul>
+        <svg
+          class="svg-add"
+          width="59"
+          height="59"
+          viewBox="0 0 59 59"
+          fill="none"
+        >
+          <path
+            d="M56.5417 27.0417C55.1847 27.0417 54.0833 28.143 54.0833 29.5C54.0833 43.0552 43.0552 54.0833 29.5 54.0833C15.9447 54.0833 4.91667 43.0552 4.91667 29.5C4.91667 15.9447 15.9447 4.91667 29.5 4.91667C36.0994 4.91667 42.2944 7.49546 46.9456 12.1786C47.9006 13.1422 49.458 13.1484 50.4216 12.1909C51.3853 11.2346 51.3902 9.67846 50.4339 8.71479C44.8535 3.09504 37.4183 0 29.5 0C13.2332 0 0 13.2332 0 29.5C0 45.7668 13.2332 59 29.5 59C45.7668 59 59 45.7668 59 29.5C59 28.143 57.8987 27.0417 56.5417 27.0417Z"
+          />
+          <path
+            d="M39.3333 27.0417H31.9583V19.6667C31.9583 18.3097 30.857 17.2084 29.5 17.2084C28.143 17.2084 27.0416 18.3097 27.0416 19.6667V27.0417H19.6666C18.3096 27.0417 17.2083 28.143 17.2083 29.5C17.2083 30.857 18.3096 31.9584 19.6666 31.9584H27.0416V39.3334C27.0416 40.6904 28.143 41.7917 29.5 41.7917C30.857 41.7917 31.9583 40.6904 31.9583 39.3334V31.9584H39.3333C40.6903 31.9584 41.7916 30.857 41.7916 29.5C41.7916 28.143 40.6903 27.0417 39.3333 27.0417Z"
+          />
+        </svg>
+      </div>
+      <form autocomplete="off">
+        <div class="formError"></div>
+        <div class="flex">
+          <label for="entry"><b></b></label>
+          <input
+            type="text"
+            placeholder="New bucket list entry"
+            name="username"
+            required
+          />
+          <svg
+            class="svg-check"
+            width="42"
+            height="38"
+            viewBox="0 0 42 38"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M40.166 0.733764C38.2707 -0.286757 36.1568 1.68139 34.9176 2.8477C32.0748 5.61768 29.6693 8.82504 26.9721 11.7408C23.9834 14.9482 21.2134 18.1555 18.1519 21.2901C16.4024 23.0396 14.5072 24.9348 13.3409 27.1216C10.7167 24.5702 8.45694 21.8002 5.54116 19.5406C3.42723 17.9369 -0.0717008 16.7706 0.00119353 20.634C0.146982 25.6639 4.59354 31.058 7.87378 34.484C9.25878 35.9418 11.0811 37.4726 13.1951 37.5455C15.7464 37.6913 18.3706 34.6297 19.9014 32.9532C22.5986 30.0374 24.7854 26.757 27.2637 23.7685C30.471 19.8322 33.7513 15.9687 36.8857 11.9595C38.8539 9.48108 45.0499 3.35784 40.166 0.733764ZM3.20843 20.3425C3.13553 20.3425 3.06264 20.3425 2.91685 20.4152C2.62527 20.3425 2.40659 20.2694 2.11501 20.1237C2.33369 19.9779 2.69817 20.0508 3.20843 20.3425Z"
+            />
+          </svg>
+          <svg
+            class="svg-cancel"
+            width="42"
+            height="42"
+            viewBox="0 0 42 42"
+            fill="none"
+          >
+            <path
+              d="M7.92349 40.6407L21 27.5639L34.0765 40.6407C35.8892 42.4531 38.828 42.4531 40.6407 40.6407C42.4531 38.828 42.4531 35.8892 40.6407 34.0765L27.5639 21L40.6407 7.92351C42.4531 6.11078 42.4531 3.17203 40.6407 1.3593C38.828 -0.453102 35.8892 -0.453102 34.0765 1.3593L21 14.4361L7.92349 1.3593C6.11077 -0.453102 3.17202 -0.453102 1.35929 1.3593C-0.453117 3.17203 -0.453117 6.11078 1.35929 7.92351L14.4361 21L1.35929 34.0765C-0.453117 35.8892 -0.453117 38.828 1.35929 40.6407C3.17202 42.4531 6.11077 42.4531 7.92349 40.6407Z"
+            />
+          </svg>
+        </div>
+      </form>
+    </main>
+    <%-include('./partials/footer.ejs')%>
+  </body>
+  <script>
+    const form = document.querySelector("form");
+    const formError = document.querySelector(".formError");
+    const svgAdd = document.querySelector(".svg-add");
+    const svgCheck = document.querySelector(".svg-check");
+    const svgCancel = document.querySelector(".svg-cancel");
+
+    svgAdd.addEventListener("click", () => {
+      form.style.display = "flex";
+      svgAdd.style.display = "none";
+    });
+
+    svgCheck.addEventListener("click", () => {
+      svgAdd.style.display = "flex";
+      form.style.display = "none";
+    });
+
+    svgCancel.addEventListener("click", () => {
+      svgAdd.style.display = "flex";
+      form.style.display = "none";
+    });
+
+    <!--form.addEventListener("submit", async (e) => {-->
+      <!--e.preventDefault();-->
+
+      <!--try {-->
+        <!--const res = await fetch("/users/login", {-->
+          <!--method: "post",-->
+          <!--body: JSON.stringify({ username, password }),-->
+          <!--headers: { "Content-Type": "application/json" },-->
+        <!--});-->
+        <!--const data = await res.json();-->
+        <!--if (data.success) {-->
+          <!--location.assign("/users/items");-->
+        <!--} else {-->
+          <!--formError.textContent = "Something went wrong";-->
+        <!--}-->
+      <!--} catch (err) {-->
+        <!--formError.textContent = "Incorrect Username/Password";-->
+      <!--}-->
+    <!--});-->
+  </script>
+</html>

@@ -6,7 +6,8 @@ const listRoute = express.Router();
 listRoute
   .route("/")
   .get((req, res) => {
-    res.status(200).end(`LIST ROUTE`);
+    let list = ["skydive", "happiest billionaire", "land a job"];
+    res.render("buckets", { list });
   })
   .post(async (req, res, next) => {
     try {

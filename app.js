@@ -25,7 +25,11 @@ const listRoute = require("./routes/listRoute");
 
 // routes
 app.use("/user", userRoute);
-app.use("/bucketlist", listRoute);
+app.use("/list", listRoute);
+
+app.use("/buckets", (req, res) => {
+  res.render("buckets");
+});
 
 app.use("/", (req, res) => {
   res.render("index");
