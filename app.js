@@ -4,6 +4,8 @@ const morgan = require("morgan");
 const errors = require("./config/errors");
 const helmet = require("helmet");
 const passport = require("passport");
+const authenticate = require("./config/authenticate");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 const app = express();
@@ -34,14 +36,17 @@ app.use(morgan("dev"));
 app.use(express.static("public"));
 app.use(express.json());
 app.use(passport.initialize());
+app.use(cookieParser());
 
 // import routes
 const userRoute = require("./routes/userRoute");
 const listRoute = require("./routes/listRoute");
+const authRoute = require("./routes/authRoute");
 
 // routes
 app.use("/user", userRoute);
 app.use("/list", listRoute);
+app.use("/auth", authRoute);
 
 app.use("/buckets", (req, res) => {
   res.render("buckets");

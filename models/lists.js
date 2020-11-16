@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const listSchema = new Schema({
-  //user: { type: mongoose.Types.ObjectId, ref: "User", unique: true },
-  user: { type: String, unique: true, required: true },
+  user: { type: mongoose.Types.ObjectId, ref: "User", unique: true },
   list: [
     {
       entry: { type: String, unique: true, required: true },

@@ -10,8 +10,8 @@
     <main>
       <div class="bucketList">
         <ul>
-          <% list.forEach(item =>{ %>
-          <li id="entryNum<%=list.indexOf(item)%>">
+          <% if (list !== null) { list.list.forEach(item =>{ %>
+          <li>
             <%=item.entry%>
             <svg
               onclick="removeEntry(this)"
@@ -26,7 +26,9 @@
               />
             </svg>
           </li>
-          <%} ) %>
+          <%} )}else{%>
+          <li>Create Bucket List!</li>
+          <%} %>
         </ul>
         <svg
           class="svg-add"
@@ -85,7 +87,6 @@
     const form = document.querySelector("form");
     const formError = document.querySelector(".formError");
     const svgAdd = document.querySelector(".svg-add");
-    const svgDelete = document.querySelector(".svg-delete");
     const svgCheck = document.querySelector(".svg-check");
     const svgCancel = document.querySelector(".svg-cancel");
 
