@@ -11,9 +11,10 @@
       <div class="bucketList">
         <ul>
           <% list.forEach(item =>{ %>
-          <li id="<%=item.index%>">
+          <li id="entryNum<%=list.indexOf(item)%>">
             <%=item.entry%>
             <svg
+              onclick="removeEntry(this)"
               class="svg-delete"
               width="42"
               height="42"
@@ -84,6 +85,7 @@
     const form = document.querySelector("form");
     const formError = document.querySelector(".formError");
     const svgAdd = document.querySelector(".svg-add");
+    const svgDelete = document.querySelector(".svg-delete");
     const svgCheck = document.querySelector(".svg-check");
     const svgCancel = document.querySelector(".svg-cancel");
 
@@ -116,5 +118,24 @@
       svgAdd.style.display = "flex";
       form.style.display = "none";
     });
+
+    const removeEntry = async function (svg) {
+      const entry = svg.parentElement.innerText;
+      try {
+        const res = await fetch("/list", {
+          method: "delete",
+          body: JSON.stringify({ entry }),
+          headers: { "Content-Type": "application/json" },
+        });
+        const data = await res.json();
+        if (data.success) {
+          location.assign("/list");
+        } else {
+          formError.textContent = "Something went wrong";
+        }
+      } catch (err) {
+        formError.textContent = "Incorrect Username/Password";
+      }
+    };
   </script>
 </html>
