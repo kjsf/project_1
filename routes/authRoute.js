@@ -4,6 +4,19 @@ const authenticate = require("../config/authenticate");
 
 const authRoute = express.Router();
 
+authRoute.get("/signin", (req, res, next) => {
+  if (req.cookies["jwt"]) {
+    res.status(302).redirect("/list");
+  } else {
+    res.status(302).redirect("/auth/google");
+  }
+});
+
+authRoute.get("/signout", (req, res, next) => {
+  console.log(`signout hit`);
+  res.cookie("jwt", "", { maxAge: 1 }).redirect("/");
+});
+
 authRoute.get(
   "/google",
   passport.authenticate("google", { scope: ["profile"] })

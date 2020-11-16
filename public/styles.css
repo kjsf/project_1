@@ -46,7 +46,7 @@ main {
 
 /* BUCKETS */
 
-.signout {
+.signOut {
   display: flex;
   align-items: center;
   width: 80%;
@@ -56,7 +56,7 @@ main {
   justify-content: flex-end;
 }
 
-.signout a {
+.signOut a {
   display: flex;
   font-family: "Lobster";
   color: black;

@@ -39,12 +39,10 @@ app.use(passport.initialize());
 app.use(cookieParser());
 
 // import routes
-const userRoute = require("./routes/userRoute");
 const listRoute = require("./routes/listRoute");
 const authRoute = require("./routes/authRoute");
 
 // routes
-app.use("/user", userRoute);
 app.use("/list", listRoute);
 app.use("/auth", authRoute);
 
