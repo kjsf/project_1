@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const listSchema = new Schema({
   //user: { type: mongoose.Types.ObjectId, ref: "User", unique: true },
+  user: { type: String, unique: true, required: true },
   list: [
     {
       entry: { type: String, unique: true, required: true },

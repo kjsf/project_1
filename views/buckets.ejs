@@ -10,9 +10,9 @@
     <main>
       <div class="bucketList">
         <ul>
-          <%let bList = list%> <% bList.forEach(item =>{ %>
-          <li>
-            <%=item%>
+          <% list.forEach(item =>{ %>
+          <li id="<%=item.index%>">
+            <%=item.entry%>
             <svg
               class="svg-delete"
               width="42"
@@ -92,36 +92,29 @@
       svgAdd.style.display = "none";
     });
 
-    svgCheck.addEventListener("click", () => {
-      svgAdd.style.display = "flex";
-      form.style.display = "none";
-          const entry = form.entry.value
-            console.log("<%=list%>")
+    svgCheck.addEventListener("click", async () => {
+      const entry = form.entry.value;
+      console.log(entry);
+      try {
+        const res = await fetch("/list", {
+          method: "post",
+          body: JSON.stringify({ entry }),
+          headers: { "Content-Type": "application/json" },
+        });
+        const data = await res.json();
+        if (data.success) {
+          location.assign("/list");
+        } else {
+          formError.textContent = "Something went wrong";
+        }
+      } catch (err) {
+        formError.textContent = "Incorrect Username/Password";
+      }
     });
 
     svgCancel.addEventListener("click", () => {
       svgAdd.style.display = "flex";
       form.style.display = "none";
     });
-
-    <!--form.addEventListener("submit", async (e) => {-->
-      <!--e.preventDefault();-->
-
-      <!--try {-->
-        <!--const res = await fetch("/users/login", {-->
-          <!--method: "post",-->
-          <!--body: JSON.stringify({ username, password }),-->
-          <!--headers: { "Content-Type": "application/json" },-->
-        <!--});-->
-        <!--const data = await res.json();-->
-        <!--if (data.success) {-->
-          <!--location.assign("/users/items");-->
-        <!--} else {-->
-          <!--formError.textContent = "Something went wrong";-->
-        <!--}-->
-      <!--} catch (err) {-->
-        <!--formError.textContent = "Incorrect Username/Password";-->
-      <!--}-->
-    <!--});-->
   </script>
 </html>

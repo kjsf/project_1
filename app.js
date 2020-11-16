@@ -10,6 +10,22 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const db = process.env.MONGO_URI;
 
+// connect to atlas and run server
+(async () => {
+  try {
+    await mongoose.connect(db, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    });
+    console.log(`Connected to DB`);
+    app.listen(PORT);
+    console.log(`Server Listening at port ${PORT}`);
+  } catch (e) {
+    console.log(e);
+  }
+})();
+
 app.set("view engine", "ejs");
 
 // middlewares
@@ -38,19 +54,3 @@ app.use("/", (req, res) => {
 // error handling
 app.use(errors.handle404);
 app.use(errors.errorHandler);
-
-// connect to atlas and run server
-(async () => {
-  try {
-    await mongoose.connect(db, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    });
-    console.log(`Connected to DB`);
-    app.listen(PORT);
-    console.log(`Server Listening at port ${PORT}`);
-  } catch (e) {
-    console.log(e);
-  }
-})();

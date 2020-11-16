@@ -5,10 +5,10 @@ const listRoute = express.Router();
 
 listRoute
   .route("/")
-  .get(async (req, res) => {
+  .get(async (req, res, next) => {
     try {
-      const list = await Lists.find();
-      console.log(list);
+      const data = await Lists.findOne({ user: "kez" });
+      const list = data.list;
       res.render("buckets", { list });
     } catch (e) {
       next(e);
@@ -16,8 +16,14 @@ listRoute
   })
   .post(async (req, res, next) => {
     try {
-      const entry = await Lists.create(req.body);
-      res.status(200).json(entry);
+      console.log(req.body);
+      const addEntry = await Lists.findOneAndUpdate(
+        { user: "kez" },
+        { $addToSet: { list: [{ entry: req.body.entry }] } },
+        { new: true }
+      );
+      console.log(addEntry);
+      res.status(200).json({ success: true });
     } catch (e) {
       next(e);
     }
@@ -30,12 +36,27 @@ listRoute
   })
   .delete(async (req, res, next) => {
     try {
-      const entry = await Lists.find();
-      console.log(entry);
-      res.status(200).json(entry);
+      console.log(req.body.entry);
+      const deleteEntry = await Lists.findOneAndUpdate(
+        { user: "kez" },
+        { $pull: { list: { entry: req.body.entry } } },
+        { new: true }
+      );
+      console.log(deleteEntry);
+      res.status(200).json({ success: true });
     } catch (e) {
       next(e);
     }
   });
+
+listRoute.post("/post", async (req, res, next) => {
+  try {
+    console.log(`got hit`);
+    const entry = await Lists.create(req.body);
+    res.status(200).json(entry);
+  } catch (e) {
+    next(e);
+  }
+});
 
 module.exports = listRoute;
