@@ -48,8 +48,8 @@
           <label for="entry"><b></b></label>
           <input
             type="text"
-            placeholder="New bucket list entry"
-            name="username"
+            placeholder="add new entry"
+            name="entry"
             required
           />
           <svg
@@ -95,6 +95,8 @@
     svgCheck.addEventListener("click", () => {
       svgAdd.style.display = "flex";
       form.style.display = "none";
+          const entry = form.entry.value
+            console.log("<%=list%>")
     });
 
     svgCancel.addEventListener("click", () => {
