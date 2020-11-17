@@ -1,11 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
-const errors = require("./config/errors");
-const helmet = require("helmet");
-const passport = require("passport");
-const authenticate = require("./config/authenticate");
 const cookieParser = require("cookie-parser");
+//const helmet = require("helmet");
+const passport = require("passport");
+const errors = require("./config/errors");
+
 require("dotenv").config();
 
 const app = express();
@@ -28,31 +28,26 @@ const db = process.env.MONGO_URI;
   }
 })();
 
-app.set("view engine", "ejs");
-
-// middlewares
-app.use(morgan("dev"));
-//app.use(helmet());
-app.use(express.static("public"));
-app.use(express.json());
-app.use(passport.initialize());
-app.use(cookieParser());
-
 // import routes
 const listRoute = require("./routes/listRoute");
 const authRoute = require("./routes/authRoute");
 
+// middlewares
+app.use(morgan("dev"));
+//app.use(helmet());
+app.use(express.json());
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(express.static("public"));
+app.set("view engine", "ejs");
+
 // routes
-app.use("/list", listRoute);
-app.use("/auth", authRoute);
-
-app.use("/buckets", (req, res) => {
-  res.render("buckets");
-});
-
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.render("index");
 });
+
+app.use("/auth", authRoute);
+app.use("/list", listRoute);
 
 // error handling
 app.use(errors.handle404);

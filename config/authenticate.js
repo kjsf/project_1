@@ -18,7 +18,6 @@ passport.deserializeUser((id, done) => {
 });
 
 exports.getToken = (user) => {
-  console.log(user);
   return jwt.sign(
     {
       user,

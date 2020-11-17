@@ -98,7 +98,6 @@
 
     svgCheck.addEventListener("click", async () => {
       const entry = form.entry.value;
-      console.log(entry);
       try {
         const res = await fetch("/list", {
           method: "post",

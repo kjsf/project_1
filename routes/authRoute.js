@@ -13,7 +13,6 @@ authRoute.get("/signin", (req, res, next) => {
 });
 
 authRoute.get("/signout", (req, res, next) => {
-  console.log(`signout hit`);
   res.cookie("jwt", "", { maxAge: 1 }).redirect("/");
 });
 
