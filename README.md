@@ -13,5 +13,3 @@
 - Google OAuth 2.0
 - Javascript Web Tokens
 - Embedded Javascript Templates
-
-[Visit the app]()
